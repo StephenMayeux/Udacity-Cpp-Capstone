@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include "mandelbrot.h"
 
 int main() {
@@ -11,8 +12,8 @@ int main() {
     double minR, maxR, minI, maxI;
     std::cin >> imageWidth >> imageHeight >> maxN >> minR >> maxR >> minI >> maxI;
 
-    Mandelbrot image(imageWidth, imageHeight, maxN, minR, maxR, minI, maxI);
-    image.create_image();
+    std::unique_ptr<Mandelbrot> image(new Mandelbrot(imageWidth, imageHeight, maxN, minR, maxR, minI, maxI));
+    image->create_image();
 
     std::cout << "Finished!" << std::endl;
     return 0;
